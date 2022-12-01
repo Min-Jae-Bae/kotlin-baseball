@@ -10,7 +10,7 @@ import baseball.view.validator.InputValidator
 class Baseball(
     private val user: User,
     private val computer: Computer,
-    private val answerBoard: AnswerBoard
+    private val answerBoard: AnswerBoard,
 ) : Game {
     private var gameState = PLAYING_CODE
     private var answer = computer.createAnswer()
@@ -38,17 +38,16 @@ class Baseball(
         gameState = END_CODE
     }
 
-    // 제거하고 다시 시작
     override fun retry() {
         answer = computer.createAnswer()
         answerBoard.clearState()
     }
 
+    private fun printFinishMessage() = println(QUIT_GAME_MASSAGE + "\n" + SELECT_COMMAND_MESSAGE)
+
     private fun finish() {
         if (answerBoard.isThreeStrike()) {
-            println(QUIT_GAME_MASSAGE)
-            println(SELECT_COMMAND_MESSAGE)
-
+            printFinishMessage()
             when (InputValidator.validateUserCommand(readLine()!!)) {
                 RETRY_COMMAND -> retry()
                 QUIT_COMMAND -> quit()
