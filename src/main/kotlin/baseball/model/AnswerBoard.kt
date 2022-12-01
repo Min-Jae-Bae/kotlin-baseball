@@ -27,13 +27,13 @@ class AnswerBoard {
     fun createResult(answer: String, userNumber: String) {
         answer.forEachIndexed { answerIndex, answerNumber ->
             if (answerNumber == userNumber[answerIndex]) {
-                stateList.add(BaseballState.STRIKE)
+                stateList[answerIndex] = BaseballState.STRIKE
             }
             if (answerNumber != userNumber[answerIndex] && answer.contains(userNumber[answerIndex])) {
-                stateList.add(BaseballState.BALL)
+                stateList[answerIndex] = BaseballState.BALL
             }
             if (answerNumber != userNumber[answerIndex] && !answer.contains(userNumber[answerIndex])) {
-                stateList.add(BaseballState.OUT)
+                stateList[answerIndex] = BaseballState.OUT
             }
         }
     }
@@ -45,12 +45,20 @@ class AnswerBoard {
         // 아웃일 때 출력
         if (outCount == stateList.size) message = "낫싱"
         // 스트라이크일때 출력
-        if (ballCount == 0 && strikeCount != 0) message = "%d스트라이크"
+        if (ballCount == 0 && strikeCount != 0) message = PRINT_STRIKE_MESSAGE.format(strikeCount)
         // 볼일때 출력
-        if (ballCount != 0 && strikeCount == 0) message = "%d볼"
+        if (ballCount != 0 && strikeCount == 0) message = PRINT_BALL_MESSAGE.format(ballCount)
         // 스트라이크 볼일 때
-        if (ballCount != 0 && strikeCount != 0) message = "%d볼 %d스트라이크"
+        if (ballCount != 0 && strikeCount != 0) message = PRINT_STRIKE_BALL_MESSAGE.format(ballCount, strikeCount)
 
         return message
     }
+
+    fun isThreeStrike(): Boolean = stateList.all { state -> state == BaseballState.STRIKE }
+
+    fun clearState() = stateList.replaceAll { BaseballState.OUT }
 }
+
+const val PRINT_STRIKE_MESSAGE = "%d스트라이크"
+const val PRINT_BALL_MESSAGE = "%d볼"
+const val PRINT_STRIKE_BALL_MESSAGE = "%d볼 %d스트라이크"
