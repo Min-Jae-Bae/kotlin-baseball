@@ -1,6 +1,6 @@
 package baseball.model
 
-import baseball.util.EMPTY_CHAR
+import baseball.util.EMPTY_STRING
 import baseball.util.MAX_NUMBER
 import baseball.util.MAX_SIZE
 import baseball.util.MIN_NUMBER
@@ -16,6 +16,6 @@ class Computer {
                 computer.add(randomNumber)
             }
         }
-        return computer.joinToString(EMPTY_CHAR)
+        return computer.joinToString(EMPTY_STRING)
     }
 }

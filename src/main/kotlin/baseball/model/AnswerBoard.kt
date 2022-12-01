@@ -39,10 +39,10 @@ class AnswerBoard {
 
     fun printResult(): String {
         val (strikeCount, ballCount, outCount) = createCount()
-        var message = ""
+        var message = EMPTY_STRING
 
         // 아웃일 때 출력
-        if (outCount == stateList.size) message = "낫싱"
+        if (outCount == stateList.size) message = PRINT_NOTHING_MESSAGE
         // 스트라이크일때 출력
         if (ballCount == 0 && strikeCount != 0) message = PRINT_STRIKE_MESSAGE.format(strikeCount)
         // 볼일때 출력
