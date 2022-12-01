@@ -21,8 +21,10 @@ class Baseball(
     // 게임 진행
     override fun process() {
         do {
-            /* 정답과 사용자 입력을 받아서 결과를 출력한다*/
             val userNumber = user.createNumber()
+
+            answerBoard.createResult(answer, userNumber)
+            println(answerBoard.printResult())
 
             finish()
         } while (isPlaying())
@@ -36,14 +38,12 @@ class Baseball(
 
     // 제거하고 다시 시작
     override fun retry() {
-        TODO("Not yet implemented")
+        answer = computer.createAnswer()
+        answerBoard.clearState()
     }
 
-    // 3개 다 맞췄을 때 끝
     private fun finish() {
-        /*스트라이크가 3일 때*/
-
-        if (/*스트라이크가 3일 때*/TODO()) {
+        if (answerBoard.isThreeStrike()) {
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
             println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 
