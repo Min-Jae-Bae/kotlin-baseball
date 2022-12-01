@@ -1,10 +1,12 @@
 package baseball.view
 
-import baseball.game.InputValidator
+import baseball.view.validator.InputValidator
 
 class User {
     // TODO: 다른 입력 예외처리
     fun createNumber(): String {
-        return InputValidator.validateNumberSize(readLine()!!)
+        print("숫자를 입력해주세요: ")
+        val userNumber = readLine()!!
+        return InputValidator.validateNumberSize(userNumber)
     }
 }

@@ -1,6 +1,6 @@
 package baseball
 
-import baseball.game.InputValidator
+import baseball.view.validator.InputValidator
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
