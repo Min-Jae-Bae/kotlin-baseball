@@ -10,7 +10,7 @@ object InputValidator {
     }
 
     fun validateUserCommand(command: String): String {
-        require(command == RETRY_COMMAND && command == QUIT_COMMAND) { ERROR_INVALID_COMMAND_MESSAGE }
+        require(command == RETRY_COMMAND || command == QUIT_COMMAND) { ERROR_INVALID_COMMAND_MESSAGE }
         return command
     }
 }
