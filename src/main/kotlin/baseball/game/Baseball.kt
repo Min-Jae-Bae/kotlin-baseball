@@ -3,6 +3,7 @@ package baseball.game
 import baseball.game.service.Game
 import baseball.model.AnswerBoard
 import baseball.model.Computer
+import baseball.util.*
 import baseball.view.User
 
 class Baseball(
@@ -10,11 +11,11 @@ class Baseball(
     private val computer: Computer,
     private val answerBoard: AnswerBoard
 ) : Game {
-    private var gameState = 1
+    private var gameState = PLAYING_CODE
     private var answer = computer.createAnswer()
 
     override fun play() {
-        println("숫자 야구 게임을 시작합니다.")
+        println(START_GAME_MASSAGE)
         process()
     }
 
@@ -30,10 +31,10 @@ class Baseball(
         } while (isPlaying())
     }
 
-    private fun isPlaying(): Boolean = gameState != 2
+    private fun isPlaying(): Boolean = gameState != END_CODE
 
     override fun quit() {
-        gameState = 2
+        gameState = END_CODE
     }
 
     // 제거하고 다시 시작
@@ -44,13 +45,13 @@ class Baseball(
 
     private fun finish() {
         if (answerBoard.isThreeStrike()) {
-            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-            println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+            println(QUIT_GAME_MASSAGE)
+            println(SELECT_COMMAND_MESSAGE)
 
             // TODO: 1, 2이외의 숫자 예외처리
             when (readLine()) {
-                "1" -> retry()
-                "2" -> quit()
+                RETRY_COMMAND -> retry()
+                QUIT_COMMAND -> quit()
             }
         }
     }

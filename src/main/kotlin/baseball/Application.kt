@@ -1,5 +1,12 @@
 package baseball
 
+import baseball.game.Baseball
+import baseball.model.AnswerBoard
+import baseball.model.Computer
+import baseball.view.User
+
 fun main() {
-    TODO("프로그램 구현")
+
+    val baseball = Baseball(User(), Computer(), AnswerBoard())
+    baseball.play()
 }

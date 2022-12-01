@@ -1,12 +1,11 @@
 package baseball.model
 
-enum class BaseballState {
-    STRIKE, BALL, OUT
-}
+import baseball.util.*
+
 
 class AnswerBoard {
     // 상태를 모두 아웃으로 초기화
-    private val stateList = MutableList(3) { BaseballState.OUT }
+    private val stateList = MutableList(MAX_SIZE) { BaseballState.OUT }
 
 
     private fun createCount(): Triple<Int, Int, Int> {
@@ -58,7 +57,3 @@ class AnswerBoard {
 
     fun clearState() = stateList.replaceAll { BaseballState.OUT }
 }
-
-const val PRINT_STRIKE_MESSAGE = "%d스트라이크"
-const val PRINT_BALL_MESSAGE = "%d볼"
-const val PRINT_STRIKE_BALL_MESSAGE = "%d볼 %d스트라이크"
