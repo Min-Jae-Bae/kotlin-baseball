@@ -5,6 +5,7 @@ import baseball.model.AnswerBoard
 import baseball.model.Computer
 import baseball.util.*
 import baseball.view.User
+import baseball.view.validator.InputValidator
 
 class Baseball(
     private val user: User,
@@ -48,8 +49,7 @@ class Baseball(
             println(QUIT_GAME_MASSAGE)
             println(SELECT_COMMAND_MESSAGE)
 
-            // TODO: 1, 2이외의 숫자 예외처리
-            when (readLine()) {
+            when (InputValidator.validateUserCommand(readLine()!!)) {
                 RETRY_COMMAND -> retry()
                 QUIT_COMMAND -> quit()
             }
